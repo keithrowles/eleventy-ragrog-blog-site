@@ -1,0 +1,32 @@
+---
+layout: "base.njk"
+---
+
+{% include "breadcrumb-project.njk" %}
+
+<div class="container">
+
+  <h1>{{ title }}</h1>
+
+  <p class="small">by <span>{{ author }}</span> on <span>{{ date | postDate }}</span></p>
+
+
+  <div class="my-4 project-image-height overflow-hidden flex flex-wrap align-items-center">
+      <img class="img-fluid rounded" src="{{ image }}" alt="{{ imageAlt }}">
+  </div>
+
+
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+
+  <h2>Tags</h2>
+
+  {% for tag in tags %}
+      <a class="btn btn-warning btn-sm shadow mb-1 rounded-pill" href="/tags/{{ tag | slugify }}">{{ tag }}</a>
+  {% endfor %}
+
+
+  
+
+</div>

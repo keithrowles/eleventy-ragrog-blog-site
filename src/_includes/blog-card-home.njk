@@ -1,0 +1,32 @@
+<div class="col">
+
+<article class="card h-100">
+
+
+        <img class="card-img-top" src="{{ blog.data.image }}" alt="{{ blog.imageAlt }}">
+
+
+    <div class="card-body">
+
+        
+
+        <h3>
+            <a href="{{ blog.url }}">{{ blog.data.title }}</a>
+        </h3>
+
+        <p class="small">by <span>{{ blog.data.author }}</span> on <span>{{ blog.data.date | postDate }}</span></p>
+
+        <p class="">{{ blog.data.summary }}</p>
+
+        <div class="mb-3">
+            {% for tag in blog.data.tags | filterTagList %}
+                <a class="btn btn-warning btn-sm shadow mb-1 rounded-pill" href="/tags/{{ tag | slugify }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+
+        <a class="btn btn-danger" href="{{ blog.url }}">Read project case study...</a>
+        
+    </div>
+</article>
+
+</div>

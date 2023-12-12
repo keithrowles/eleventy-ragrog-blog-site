@@ -1,0 +1,17 @@
+---
+title: RagRog Tag List
+metadescription: This is the meta description for the tag list page.
+permalink: /tags/
+layout: 'base.njk'
+canonical: /tags/
+---
+
+{% include "breadcrumb.njk" %}
+
+<h1 class="mb-4 pb-4">{{title}}</h1>
+
+
+{% for tag in collections.all | getAllTags | filterTagList %}
+	{% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+	<a href="{{ tagUrl }}" class="btn btn-primary mb-2">{{ tag }}</a>
+{% endfor %}

@@ -1,0 +1,47 @@
+---
+title: RagRog
+metadescription: This is the meta description for the home page.
+canonical: /
+layout: 'base.njk'
+numberOfLatestPostsToShow: 3
+numberOfLatestBlogsToShow: 3
+---
+
+
+{% set postsCount = collections.projects | length %}
+{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
+
+
+{% set blogsCount = collections.blogs | length %}
+{% set latestBlogsCount = blogsCount | min(numberOfLatestBlogsToShow) %}
+
+{# <h1 class="border-bottom mb-4 pb-4">{{title}}</h1> #}
+
+
+
+{% include "feature.njk" %}
+
+
+{% include "techstack.njk" %}
+
+
+<h1 class="display-6 fw-bold mb-4">Recent {{ latestPostsCount }} Project{% if latestPostsCount != 1 %}s{% endif %}</h1>
+
+{% set postslist = collections.projects | head(-1 * numberOfLatestPostsToShow) %}
+{% set postslistCounter = postsCount %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+{% for post in postslist | reverse %}
+    {% include "project-card-home.njk" %}
+{% endfor %}   
+</div>
+
+<h1 class="display-6 fw-bold mb-4 mt-4">Recent {{ latestBlogsCount }} Blog Post{% if latestBlogsCount != 1 %}s{% endif %}</h1>
+
+{% set blogslist = collections.blogs | head(-1 * numberOfLatestBlogsToShow) %}
+{% set blogslistCounter = blogsCount %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+{% for blog in blogslist | reverse %}
+    {% include "blog-card-home.njk" %}
+{% endfor %}   
+</div>
+

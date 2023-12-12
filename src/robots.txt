@@ -1,0 +1,4 @@
+Sitemap: https://ragrog.com.au/sitemap.xml
+
+User-agent: *
+Disallow:

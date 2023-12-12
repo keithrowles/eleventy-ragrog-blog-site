@@ -1,0 +1,38 @@
+---
+layout: 'base.njk'
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+permalink: /tags/{{ tag | slugify }}/
+eleventyComputed:
+  title: RagRog - Projects and Articles Tagged "{{ tag }}"
+  canonical: /tags/{{ tag | slugify }}/
+  metadescription: This is the meta description for the tag {{ tag | slugify }} page.
+---
+
+{% include "breadcrumb.njk" %}
+
+
+<h1 class="mb-4 pb-4">Projects and Articles Tagged with "{{ tag }}"</h1>
+
+{% set postslist = collections[ tag ] %}
+
+
+<div>
+{% for post in postslist | reverse %}
+	<div class="card mb-4">
+    <div class="card-body">
+      <p class="card-text">
+        <a href="{{ post.url }}" class="card-link">
+          {% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}
+          </a>
+      </p>
+      <p class="card-text">{{ post.data.summary }}</p>
+    </div>
+	</div>
+{% endfor %}
+</div>
+
+<p><a href="/tags/" class="btn btn-primary btn-lg">See All Tags</a>.</p>
